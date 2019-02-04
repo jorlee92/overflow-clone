@@ -8,6 +8,43 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+/* POST QUESTION */
+router.post('/question', function(req, res) {
+  let question_text = req.body.q_text;
+  Question.create({
+    text: question_text,
+    posted: new Date(),
+  }).then((result) => { 
+    res.redirect('/view/' + result._id)
+  })
+})
+
+/* VIEW QUESTION */
+
+router.get('/view/:id', function(req,res) {
+  let questionID = req.params.id;
+  Question.find({_id:questionID})
+  .then(results => {
+    res.send(results);
+  })
+  .catch(() => {
+    res.send("UNABLE TO LOAD");
+  }
+  )
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* HOME TEST */
 router.get('/test/', function(req,res) {
   Question.find({})
