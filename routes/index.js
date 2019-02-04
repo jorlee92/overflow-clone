@@ -5,7 +5,12 @@ var Question = require('../models/question');
 var Comment = require('../models/comment');
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  Question.find({})
+  .then(results => {
+    res.render('index', {
+      title: "Sample Title",
+    });
+  })
 });
 
 /* POST QUESTION */
