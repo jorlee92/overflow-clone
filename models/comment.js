@@ -8,6 +8,7 @@ var CommentSchema = new Schema({
   posted: Date,
   score: Number,
   isAnswer: Boolean,
+  questionID: String,
 });
 
 // Compile model from schema
