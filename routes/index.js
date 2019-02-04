@@ -24,7 +24,9 @@ router.get('/test/', function(req,res) {
 router.get('/test/fakenew', function(req, res) {
   Question.create({
     text: "Blah Blah",
-    created: new Date(),
+    posted: new Date(),
+  }).then(() => { 
+    res.send("Created");
   })
 })
 module.exports = router;
